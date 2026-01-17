@@ -25,8 +25,12 @@ const app = express();
 const allowedOrigins = [
   "https://ecommerce-frontend-react-flame.vercel.app",
   "https://ecommerce-frontend-react-tau.vercel.app",
-  "https://javad-react.vercel.app"
+  "https://javad-react.vercel.app",
+  "http://localhost:5173"
 ];
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
@@ -47,10 +51,10 @@ app.use(
     secret: "mysecret",
     resave: false,
     saveUninitialized: false,
-   cookie: {
+    cookie: {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: false, // Changed for local development
+      sameSite: "lax", // Changed for local development
       maxAge: 1000 * 60 * 60 * 24,
     },
     store: MongoStore.create(
