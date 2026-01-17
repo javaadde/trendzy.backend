@@ -5,10 +5,6 @@ import { productByCategory, productsHome, searchProducts } from "../controllers/
 
 export const productsRouter = express.Router();
 
-// json
-productsRouter.use(express.json());
-productsRouter.use(express.urlencoded({ extended: true }));
-
 // Routes =>
 
 // get all products

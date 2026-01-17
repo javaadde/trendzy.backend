@@ -6,10 +6,6 @@ import { checkAcessToCart } from "../middlewares/acess.js";
 
 export const cartRouter = express.Router();
 
-// json parse
-cartRouter.use(express.json());
-cartRouter.use(express.urlencoded({ extended: true }));
-
 // MIDDLEWARE
 cartRouter.use(checkAcessToCart);
 
@@ -23,4 +19,4 @@ cartRouter.patch("/add/:pro_id", AddtoCart);
 cartRouter.patch("/quantity/:operation", operationOnItems);
 
 // delete cart item
-cartRouter.delete('/delete/:id', deletCartItem )
+cartRouter.delete('/delete/:id', deletCartItem)

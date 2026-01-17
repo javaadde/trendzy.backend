@@ -35,10 +35,6 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 export const adminRouter = express.Router();
 
-// json converting
-adminRouter.use(express.json());
-adminRouter.use(express.urlencoded({ extended: true }));
-
 // SIGN IN
 // ===============
 adminRouter.post("/signin", singnInForAdmin);
@@ -48,7 +44,7 @@ adminRouter.use(checkIsAdminOrNot);
 
 
 // HOME
-adminRouter.get('/',isAdmin)
+adminRouter.get('/', isAdmin)
 
 // PRODUCTS CRUD
 // =================
@@ -61,7 +57,7 @@ adminRouter.post(
   PorductAdding
 ); // adding products
 adminRouter.delete("/products/delete/:id", DeletingProduct); // deleting products
-adminRouter.put("/products/update",upload.single('image') ,UpdatingProduct ); // updating products
+adminRouter.put("/products/update", upload.single('image'), UpdatingProduct); // updating products
 
 //  GET ALL USERS
 // =================
@@ -74,8 +70,8 @@ adminRouter.put("/user/:active", UserDisableOrEnable); // user enable disable
 
 adminRouter.get("/orders", GetAllOrders); // all orders by default
 adminRouter.get("/orders/filter/date", GetAllOrdersByDate);
-adminRouter.get("/orders/user/:id",GetAllOrdersByUser)
-adminRouter.get("/orders/:status",GetAllOrderByStatus)
+adminRouter.get("/orders/user/:id", GetAllOrdersByUser)
+adminRouter.get("/orders/:status", GetAllOrderByStatus)
 
 adminRouter.put("/order/update/:id", UpdateAnOrder);
 adminRouter.delete("/order/delete/:id", DeleteAnOrder);
