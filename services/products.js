@@ -7,7 +7,7 @@ export async function findAllProducts() {
 }
 
 export async function findAllProductsCount() {
-  const allproducts = await products.find().countDocuments()
+  const allproducts = await products.find().countDocuments();
   return allproducts;
 }
 
@@ -16,10 +16,9 @@ export async function findCategoryProducts(category) {
   return allproducts;
 }
 
-
-
 export async function addProduct(pro) {
-  const findedCatId = await category.findOne({ name: pro.category_id }) || null;
+  const findedCatId =
+    (await category.findOne({ name: pro.category_id })) || null;
 
   if (findedCatId != null) {
     try {
@@ -75,14 +74,17 @@ export async function deleteManyProductsByCategory(category_id) {
   return dlt;
 }
 
-
 export async function findPublicId(id) {
-   const data = await products.findOne({_id:id})
-   return data.public_id;
+  const data = await products.findOne({ _id: id });
+  return data.public_id;
 }
-
 
 export async function searchWithQuery(query) {
   const data = await products.find({ name: { $regex: query, $options: "i" } });
   return data;
+}
+
+export async function findSingleProduct(id) {
+  const product = await products.findById(id);
+  return product;
 }
